@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 FTJ Project/Library/
 FTJ Project/Temp/
 FTJ Project/Build/
 *.suo
+=======
+FTJ Project/Library/
+FTJ Project/Temp/
+FTJ Project/Build/
+*.suo
+>>>>>>> c595cced47a5db4facf5a637df466490011c7076
 build

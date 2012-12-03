@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -433,6 +434,8 @@ public class ObjectManagerScript : MonoBehaviour {
 	}
 }
 =======
+=======
+>>>>>>> c595cced47a5db4facf5a637df466490011c7076
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -866,4 +869,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		}
 	}
 }
+<<<<<<< HEAD
 >>>>>>> origin/wilko
+=======
+>>>>>>> c595cced47a5db4facf5a637df466490011c7076
