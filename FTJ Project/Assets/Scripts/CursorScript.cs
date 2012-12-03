@@ -255,7 +255,6 @@ public class CursorScript : MonoBehaviour {
 	
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
-        //Debug.Log(info.networkView.viewID);
 		// Send data to server
 		if (stream.isWriting)
 		{
