@@ -46,7 +46,8 @@ public class NetUIScript : MonoBehaviour {
 		music_ = gameObject.AddComponent<AudioSource>();
 		music_.volume = 0.0f;
 		music_.loop = true;
-		target_song_ = Random.Range(0,4);
+		//target_song_ = Random.Range(0,4);
+        target_song_ = -1;
 		ConsoleScript.Log(GAME_DISPLAY_IDENTIFIER);
 	}
 	
@@ -91,7 +92,7 @@ public class NetUIScript : MonoBehaviour {
 	
 	
 	void SetTargetSong(int which) {
-		if(Network.connections.Length > 0){
+		if(Network.isServer && Network.connections.Length > 0){
 			networkView.RPC("TargetSongWasSet", RPCMode.All, Net.GetMyID(),which);
 		} else {
 			TargetSongWasSet(Net.GetMyID(),which);

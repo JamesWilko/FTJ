@@ -11,7 +11,7 @@ public class ObjectManagerScript : MonoBehaviour {
 	const float ANGULAR_FORCE = 400.0f;
 	const float HOLD_LINEAR_DAMPENING = 0.4f;
 	const float HOLD_ANGULAR_DAMPENING = 0.4f;
-	const float MAX_DICE_VEL = 150.0f;
+	const float MAX_DICE_VEL = 20.0f;
 	const float DICE_ANG_SPEED = 300.0f;
 	const float DECK_MERGE_THRESHOLD = 0.4f;
 	const float SHAKE_THRESHOLD = 1.0f;

@@ -110,7 +110,18 @@ public class CursorScript : MonoBehaviour {
 	void Update () {
 		var player_list = PlayerListScript.Instance().GetPlayerInfoList();
 		if(player_list.ContainsKey(id_)){
-			SetColor(player_list[id_].color_);
+            PlayerInfo player = player_list[id_];
+			SetColor(player.color_);
+            TextMesh mesh = gameObject.GetComponentInChildren<TextMesh>();
+            if(Input.GetKey(KeyCode.LeftControl))
+            {
+                mesh.text = player.name_;
+            }
+            else
+            {
+                mesh.text = "";
+            }
+            mesh.renderer.material.color = player.color_;
 		}
 		if(networkView.isMine){
 			if(Input.GetKeyDown("f")){
