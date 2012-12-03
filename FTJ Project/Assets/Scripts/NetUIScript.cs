@@ -441,6 +441,8 @@ public class NetUIScript : MonoBehaviour {
 	    } 
 	    
 	}
+
+    public static bool displayRestartConfirm = false;
 	
 	void DrawGameGUI() {
 		if(chat_shown_){
@@ -480,7 +482,7 @@ public class NetUIScript : MonoBehaviour {
 		GUILayout.EndHorizontal();*/
 		GUILayout.BeginHorizontal();
 		if(GUILayout.Button("Restart Game")){
-			ObjectManagerScript.Instance().RecoverDice();
+            displayRestartConfirm = true;
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -550,7 +552,33 @@ public class NetUIScript : MonoBehaviour {
 			help_shown_ = !help_shown_;
 			Event.current.Use();
 		}
+
+        if(displayRestartConfirm)
+        {
+            GUILayout.Window(0, new Rect(Screen.width * 0.5f - 100, Screen.height * 0.5f - 40, 200, 80), RestartConfirmWindow, "Restart Confirmation");
+        }
 	}
+
+    void RestartConfirmWindow(int windowID)
+    {
+        GUIStyle style = GUI.skin.GetStyle("Label");
+        style.alignment = TextAnchor.UpperCenter;
+        GUILayout.Label("Are you sure you want to restart this game?");
+        style.alignment = TextAnchor.UpperLeft;
+
+        GUILayout.BeginHorizontal();
+        if(GUILayout.Button("Yes"))
+        {
+            ObjectManagerScript.Instance().RecoverDice();
+            displayRestartConfirm = false;
+        }
+
+        if(GUILayout.Button("No"))
+        {
+            displayRestartConfirm = false;
+        }
+        GUILayout.EndHorizontal();
+    }
 	
 	void TryToCreateGame(bool local){
 		SetState(State.CREATING);
