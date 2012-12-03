@@ -14,7 +14,8 @@ public class MainCameraScript : MonoBehaviour {
 	const float PAN_SPEED = 10.0f;
 	
 	// Use this for initialization
-	void Start () {
+	void Start(){
+
 		old_rotation = transform.rotation;
 		old_fov = camera.fov;
 		zoomed = false;
@@ -26,7 +27,8 @@ public class MainCameraScript : MonoBehaviour {
 		} else {
 			width = Screen.height * 16 / 10;
 		}
-		camera.pixelRect = new Rect((Screen.width - width)*0.5f,(Screen.height - height)*0.5f,width,height);
+		//camera.pixelRect = new Rect((Screen.width - width)*0.5f,(Screen.height - height)*0.5f,width,height);
+		
 	}
 	
 	void StartZoom() {

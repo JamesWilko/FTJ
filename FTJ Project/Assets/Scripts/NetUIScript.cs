@@ -581,7 +581,8 @@ public class NetUIScript : MonoBehaviour {
             else if(windowID == 1) // Exit
             {
                 Network.Disconnect();
-                Application.LoadLevel(Application.loadedLevel);
+                //Application.LoadLevel(Application.loadedLevel);
+                Application.Quit();	// Easy solution
             }
             displayConfirm = false;
         }

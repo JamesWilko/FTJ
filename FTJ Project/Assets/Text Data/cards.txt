@@ -460,7 +460,7 @@ scale war\" (Beggars 13.1)"
 {
  	 "Title": "Unbreakable Helmet",
 	  "Type": "Equipment",
-	  "Price" : 7
+	  "Price" : 8
 	  "Rules": "You may reroll two attack dice",
 	  "Flavour": "\"There are countless artifacts
 in existence, and more being
@@ -472,7 +472,7 @@ made\" (Relics 6.1)"
 {
  	 "Title": "Unflinching Sword",
 	  "Type": "Equipment",
-	  "Price" : 7
+	  "Price" : 8
 	  "Rules": "Add 1 to all combat rolls",
 	  "Flavour": "\"There are countless artifacts
 in existence, and more being
