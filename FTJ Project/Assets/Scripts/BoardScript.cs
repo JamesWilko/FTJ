@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BoardScript : MonoBehaviour {
-
 	public GameObject dice_prefab;
 	public GameObject atkdice_prefab;
 	public GameObject token_prefab;
@@ -15,12 +14,12 @@ public class BoardScript : MonoBehaviour {
 
 		Transform dice_spawns = transform.Find("DiceSpawns");
 		foreach(Transform child in dice_spawns.transform){
-			Network.Instantiate(dice_prefab, child.position, Quaternion.identity, 0);
+			GameObject dice_object = (GameObject)Network.Instantiate(dice_prefab, child.position, Quaternion.identity, 0);
 		}
 
 		Transform atkdice_spawns = transform.Find("AttackDiceSpawns");
 		foreach(Transform child in atkdice_spawns.transform){
-			Network.Instantiate(atkdice_prefab, child.position, Quaternion.identity, 0);
+			GameObject atkdice_object = (GameObject)Network.Instantiate(atkdice_prefab, child.position, Quaternion.identity, 0);
 		}
 
 		Transform token_spawns = transform.Find("TokenSpawns");
