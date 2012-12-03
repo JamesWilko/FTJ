@@ -39,6 +39,15 @@ public class MainCameraScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		
+		float mwheel = Input.GetAxis("MouseWheel");
+		if(mwheel > 0)
+			if(!zoomed)
+				StartZoom();
+		
+		if(mwheel < 0)
+			zoomed = false;
+			
 		if(Input.GetKeyDown("z")){
 			if(!zoomed){
 				StartZoom ();
