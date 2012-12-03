@@ -19,12 +19,16 @@ public class RaycastHitComparator : IComparer
 
 public class CursorScript : MonoBehaviour {
 	int id_ = -1;
+    int last_id_ = -1;
 	float deck_held_time_ = 0.0f;
 	int deck_held_id_ = -1;
 	const float DECK_HOLD_THRESHOLD = 0.5f;
 	bool card_face_up_ = false;
-	int card_rotated_ = 0;
+    bool last_card_face_up_ = false;
+    int card_rotated_ = 0;
+    int last_card_rotated_ = 0;
 	bool tapping_ = false;
+    bool last_tapping_ = false;
 	
 	public int id() {
 		return id_;
@@ -251,17 +255,25 @@ public class CursorScript : MonoBehaviour {
 	
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
+        //Debug.Log(info.networkView.viewID);
 		// Send data to server
 		if (stream.isWriting)
 		{
-			int id = id_;
-			stream.Serialize(ref id);
-			bool tapping = tapping_;
-			stream.Serialize(ref tapping);
-			bool card_face_up = card_face_up_;
-			stream.Serialize(ref card_face_up);
-			int card_rotated = card_rotated_;
-			stream.Serialize(ref card_rotated);
+            if(last_id_ != id_ || last_tapping_ != tapping_ || last_card_face_up_ != card_face_up_ || last_card_rotated_ != card_rotated_)
+            {
+                int id = id_;
+                stream.Serialize(ref id);
+                last_id_ = id;
+                bool tapping = tapping_;
+                stream.Serialize(ref tapping);
+                last_tapping_ = tapping;
+                bool card_face_up = card_face_up_;
+                stream.Serialize(ref card_face_up);
+                last_card_face_up_ = card_face_up;
+                int card_rotated = card_rotated_;
+                stream.Serialize(ref card_rotated);
+                last_card_rotated_ = card_rotated;
+            }
 		}
 		// Read data from remote client
 		else
