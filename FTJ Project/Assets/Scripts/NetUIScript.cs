@@ -9,7 +9,7 @@ public class NetUIScript : MonoBehaviour {
 	State state_ = State.MAIN_MENU;
 	const string DEFAULT_GAME_NAME = "Unnamed Game";
 	const string DEFAULT_PLAYER_NAME = "Unknown Player";
-	const string GAME_IDENTIFIER = "DesperateGodsv41";
+	const string GAME_IDENTIFIER = "DesperateGodsv41AWOL";
 	const string GAME_DISPLAY_IDENTIFIER = "DesperateGodsv42";
 	const int DEFAULT_PORT = 25000;
 	const int MAX_PLAYERS = 4;
@@ -46,7 +46,8 @@ public class NetUIScript : MonoBehaviour {
 		music_ = gameObject.AddComponent<AudioSource>();
 		music_.volume = 0.0f;
 		music_.loop = true;
-		target_song_ = Random.Range(0,4);
+		//target_song_ = Random.Range(0,4);
+        target_song_ = -1;
 		ConsoleScript.Log(GAME_DISPLAY_IDENTIFIER);
 	}
 	
@@ -91,7 +92,7 @@ public class NetUIScript : MonoBehaviour {
 	
 	
 	void SetTargetSong(int which) {
-		if(Network.connections.Length > 0){
+		if(Network.isServer && Network.connections.Length > 0){
 			networkView.RPC("TargetSongWasSet", RPCMode.All, Net.GetMyID(),which);
 		} else {
 			TargetSongWasSet(Net.GetMyID(),which);
