@@ -260,7 +260,7 @@ public class ObjectManagerScript : MonoBehaviour {
 		} else {
 			target_position.y -= 1.3f;
 		}
-		if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>() || grabbable.GetComponent<ParentTokenScript>()){
+		if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>() || grabbable.GetComponent<ParentTokenScript>() || grabbable.GetComponent<TokenScript>() || grabbable.GetComponent<CoinScript>()){
 			target_position.y += 0.5f;
 			Quaternion target_rotation = Quaternion.identity;
 			if(grabbable.GetComponent<DeckScript>() || grabbable.GetComponent<CardScript>()){
@@ -273,9 +273,19 @@ public class ObjectManagerScript : MonoBehaviour {
 				}
 				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
 			}
+
 			if(grabbable.GetComponent<ParentTokenScript>()){
 				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
 			}
+
+			if(grabbable.GetComponent<TokenScript>()){
+				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
+			}
+
+			if(grabbable.GetComponent<CoinScript>()){
+				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
+			}
+
 			Quaternion offset = target_rotation * Quaternion.Inverse(held_rigidbody.rotation);
 			float angle;
 			Vector3 offset_vec3;
@@ -289,7 +299,7 @@ public class ObjectManagerScript : MonoBehaviour {
 			if(angle != 0.0f){
 				offset_vec3 *= angle;
 				float mult = 1.0f;
-				if(grabbable.GetComponent<ParentTokenScript>()){
+				if(grabbable.GetComponent<ParentTokenScript>() || grabbable.GetComponent<TokenScript>() || grabbable.GetComponent<CoinScript>()){
 					mult = 0.1f;
 				}
 				held_rigidbody.AddTorque(offset_vec3 * Time.deltaTime * ANGULAR_FORCE * mult * held_rigidbody.mass);
