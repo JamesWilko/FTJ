@@ -274,15 +274,7 @@ public class ObjectManagerScript : MonoBehaviour {
 				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
 			}
 
-			if(grabbable.GetComponent<ParentTokenScript>()){
-				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
-			}
-
-			if(grabbable.GetComponent<TokenScript>()){
-				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
-			}
-
-			if(grabbable.GetComponent<CoinScript>()){
+			if(grabbable.GetComponent<ParentTokenScript>() || grabbable.GetComponent<TokenScript>() || grabbable.GetComponent<CoinScript>()){
 				target_rotation = Quaternion.AngleAxis(cursor_script.card_rotated() * 90, new Vector3(0,1,0)) * target_rotation;
 			}
 
