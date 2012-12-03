@@ -69,16 +69,15 @@ crystal irises\" (Beggars 5.3)"
 	  "Image" : 7
 	  "Back" : 4
 	}{
-     "Title": "Incensed Wizard",
+     "Title": "Incest Wizard",
 	  "Type": "Human Wizard",
 	  "Target": 3
 	  "Gold": 1
 	  "Points": 1
 	  "Rules": "On loss: teleport to the Hedge
 Maze",
-	  "Flavour": "\"Wizards were able to, at
-great loss of life, activate a
-divine artifact\" (Beggars 8.2)"
+	  "Flavour": "\"Easysteet is a dumbtit\"
+(Everyone Ever)"
 	  "Duplicates": 1
 	  "Image" : 5
 	  "Back" : 4
@@ -459,11 +458,22 @@ scale war\" (Beggars 13.1)"
 	  "Back" : 5
 	}
 {
+ 	 "Title": "Unbreakable Helmet",
+	  "Type": "Equipment",
+	  "Price" : 7
+	  "Rules": "You may reroll two attack dice",
+	  "Flavour": "\"There are countless artifacts
+in existence, and more being
+made\" (Relics 6.1)"
+	  "Duplicates": 2
+	  "Image" : 32
+	  "Back" : 5
+	}
+{
  	 "Title": "Unflinching Sword",
 	  "Type": "Equipment",
-	  "Price" : 9
-	  "Rules": "Add 1 to all combat rolls
-You may reroll two attack dice",
+	  "Price" : 7
+	  "Rules": "Add 1 to all combat rolls",
 	  "Flavour": "\"There are countless artifacts
 in existence, and more being
 made\" (Relics 6.1)"
