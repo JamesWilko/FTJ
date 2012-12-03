@@ -442,7 +442,8 @@ public class NetUIScript : MonoBehaviour {
 	    
 	}
 
-    public static bool displayRestartConfirm = false;
+    public static bool displayConfirm = false;
+    int confirmID;
 	
 	void DrawGameGUI() {
 		if(chat_shown_){
@@ -470,9 +471,10 @@ public class NetUIScript : MonoBehaviour {
 		}
 		
 		GUILayout.BeginHorizontal();
-		if(GUILayout.Button("Exit Game")){
-			Network.Disconnect();
-			Application.LoadLevel(Application.loadedLevel);
+		if(GUILayout.Button("Exit Game"))
+        {
+            displayConfirm = true;
+            confirmID = 1;
 		}
 		GUILayout.EndHorizontal();
 		/*GUILayout.BeginHorizontal();
@@ -481,8 +483,10 @@ public class NetUIScript : MonoBehaviour {
 		}
 		GUILayout.EndHorizontal();*/
 		GUILayout.BeginHorizontal();
-		if(GUILayout.Button("Restart Game")){
-            displayRestartConfirm = true;
+        if(Network.isServer && GUILayout.Button("Restart Game"))
+        {
+            displayConfirm = true;
+            confirmID = 0;
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -553,29 +557,37 @@ public class NetUIScript : MonoBehaviour {
 			Event.current.Use();
 		}
 
-        if(displayRestartConfirm)
+        if(displayConfirm)
         {
-            GUILayout.Window(0, new Rect(Screen.width * 0.5f - 100, Screen.height * 0.5f - 40, 200, 80), RestartConfirmWindow, "Restart Confirmation");
+            GUILayout.Window(confirmID, new Rect(Screen.width * 0.5f - 100, Screen.height * 0.5f - 40, 200, 80), ConfirmWindow, "Confirmation");
         }
 	}
 
-    void RestartConfirmWindow(int windowID)
+    void ConfirmWindow(int windowID)
     {
         GUIStyle style = GUI.skin.GetStyle("Label");
         style.alignment = TextAnchor.UpperCenter;
-        GUILayout.Label("Are you sure you want to restart this game?");
+        GUILayout.Label("Are you sure you want to do this?");
         style.alignment = TextAnchor.UpperLeft;
 
         GUILayout.BeginHorizontal();
         if(GUILayout.Button("Yes"))
         {
-            ObjectManagerScript.Instance().RecoverDice();
-            displayRestartConfirm = false;
+            if(windowID == 0) // Restart
+            {
+                ObjectManagerScript.Instance().RecoverDice();
+            }
+            else if(windowID == 1) // Exit
+            {
+                Network.Disconnect();
+                Application.LoadLevel(Application.loadedLevel);
+            }
+            displayConfirm = false;
         }
 
         if(GUILayout.Button("No"))
         {
-            displayRestartConfirm = false;
+            displayConfirm = false;
         }
         GUILayout.EndHorizontal();
     }

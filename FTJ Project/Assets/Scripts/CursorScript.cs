@@ -137,7 +137,7 @@ public class CursorScript : MonoBehaviour {
 				}
 			}
 
-            if(Input.GetMouseButton(0) && !NetUIScript.displayRestartConfirm)
+            if(Input.GetMouseButton(0) && !NetUIScript.displayConfirm)
             {
 				Ray ray = main_camera.ScreenPointToRay(Input.mousePosition);
 				RaycastHit[] raycast_hits;
